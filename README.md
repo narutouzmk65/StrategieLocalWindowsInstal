@@ -1,222 +1,242 @@
-# 🌍 WorldTour — README (TP WordPress) | Guide simple + technique
+# 🛡️ Gestion des incidents & stratégie locale
 
-Site WordPress du projet **WorldTour** (agence de voyage nationale).  
-➡️ Site en ligne : https://blog27143.wordpress.com/  
-
-📌 Ce README sert de **documentation de TP** : il explique **comment accéder au site**, **comprendre la structure**, et **mettre à jour le contenu**.
-
-> ⚠️ Important : sur ce TP, le contenu est géré **avec les blocs WordPress (éditeur)**.  
-> Les manipulations décrites ci-dessous restent valables même si on n’est pas “informatique”.
+![Status](https://img.shields.io/badge/status-complete-success)
+![Type](https://img.shields.io/badge/type-school%20project-blue)
+![Security](https://img.shields.io/badge/focus-cybersecurity-red)
 
 ---
 
-## 📚 Sommaire (cliquable)
+## 📚 Sommaire
 
-- [1. Objectif du TP](#1-objectif-du-tp)
-- [2. Prérequis](#2-prérequis)
-- [3. Accès au site](#3-accès-au-site)
-  - [3.1 Site en ligne (WordPress.com)](#31-site-en-ligne-wordpresscom)
-  - [3.2 Site local (srv-lamp)](#32-site-local-srv-lamp)
-- [4. Structure du site WorldTour (pages et menus)](#4-structure-du-site-worldtour-pages-et-menus)
-  - [4.1 Pages principales](#41-pages-principales)
-  - [4.2 Menu de navigation](#42-menu-de-navigation)
-  - [4.3 Rôles et accès](#43-rôles-et-accès)
-- [5. Mettre à jour le contenu (avec les blocs)](#5-mettre-à-jour-le-contenu-avec-les-blocs)
-  - [5.1 Modifier une page existante](#51-modifier-une-page-existante)
-  - [5.2 Ajouter un nouveau voyage](#52-ajouter-un-nouveau-voyage)
-  - [5.3 Ajouter une nouvelle antenne](#53-ajouter-une-nouvelle-antenne)
-- [6. Points d’attention (erreurs fréquentes)](#6-points-dattention-erreurs-fréquentes)
-- [7. Support](#7-support)
+* [📌 Mission 1 — Analyse CERT-FR](#-mission-1--analyse-cert-fr)
+* [⚙️ Mission 2 — Configuration Windows](#️-mission-2--configuration-windows)
+* [🔒 Sécurisation du système](#-sécurisation-du-système)
+* [🧠 Étude du BOOT](#-étude-du-boot)
 
 ---
 
-## 1. Objectif du TP
+# 📌 Mission 1 — Analyse CERT-FR
 
-Ce TP consiste à :
-- mettre en place un site WordPress WorldTour (en ligne + en local),
-- organiser les pages (antennes / voyages),
-- permettre des mises à jour simples du contenu (textes, photos, tarifs),
-- publier proprement une vitrine d’agence de voyage.
+🔗 Source : https://www.cert.ssi.gouv.fr/
 
 ---
 
-## 2. Prérequis
+## ❓ Cibles des alertes récentes
 
-Avant de commencer, il faut avoir :  
-- un navigateur récent (Chrome, Firefox ou Edge)  
-- un accès Internet (pour la version en ligne)  
-- un serveur local **srv-lamp** (IP : 192.168.1.103) avec Apache/PHP/MySQL  
-- WinSCP (accès sFTP) et PuTTY (accès SSH)  
-- des identifiants d’équipe (ga26 à gh26, mot de passe = identifiant par défaut)  
-
----
-
-## 3. Accès au site
-
-### 3.1 Site en ligne (WordPress.com)
-
-Le site public du projet est accessible ici :  
-https://blog27143.wordpress.com/
-
-➡️ La version en ligne sert de **vitrine** : on y publie la version “propre”.  
-💡 Conseil TP : tester d’abord en local, puis publier en ligne.
+| Alerte              | Cible                   | Description                                         |
+| ------------------- | ----------------------- | --------------------------------------------------- |
+| CERTFR-2026-ALE-004 | BIG-IP APM (F5)         | Exécution de code à distance (exploitée activement) |
+| CERTFR-2026-ALE-003 | Messagerie instantanée  | Campagnes ciblant secteurs sensibles                |
+| CERTFR-2026-ALE-001 | Ivanti EPMM             | Scripts de détection fournis                        |
+| CERTFR-2025-ALE-014 | React Server Components | Vulnérabilité critique                              |
+| CERTFR-2026-ALE-002 | Cisco SD-WAN            | Infrastructure réseau vulnérable                    |
 
 ---
 
-### 3.2 Site local (srv-lamp)
+## ❓ Logiciels et systèmes obsolètes
 
-La version locale sert à travailler / tester sans casser le site public.
-
-#### a) Configuration proxy (si nécessaire)
-Pour accéder à `srv-lamp` depuis un poste, il peut être nécessaire d’ajouter une **exception proxy** pour le domaine `srv-lamp` dans les paramètres réseau du navigateur.
-
-#### b) Connexion au serveur (SSH)
-1. Ouvrir **PuTTY**
-2. Dans “Host Name” : `srv-lamp` ou `192.168.1.103`
-3. Port : `22` | Type : `SSH`
-4. “Open”
-5. Se connecter avec l’identifiant d’équipe
-
-⚠️ Note TP important : changer le mot de passe avec la commande :
-`passwd`
-
-> ⚠️ Attention : le mot de passe administrateur WordPress ne peut pas être réinitialisé.  
-> Il doit être noté immédiatement (ex : Trello).
-
-#### c) Lancer l’installation WordPress en local
-1. Se connecter en sFTP avec **WinSCP**
-2. Aller dans : `public_html/wordpress/`
-3. Ouvrir le navigateur et aller sur :  
-   `http://srv-lamp/~ga26/` (remplacer `ga26` par l’identifiant)
-
-Ensuite, l’assistant WordPress s’affiche :
-- Langue : Français
-- Base de données :
-  - Nom : `ga26_wp` (selon identifiant)
-  - Identifiant : identifiant d’équipe
-  - Mot de passe : mot de passe d’équipe
-  - Serveur : `localhost`
-  - Préfixe : `wp_` (par défaut)
-
-✅ Une fois terminé, WordPress est installé.
-
-#### d) Accès base de données (si besoin TP)
-phpMyAdmin :  
-`http://srv-lamp/phpmyadmin/`
+* SharePoint Enterprise Server 2016
+* SharePoint Server 2019
+* SonicWall (versions anciennes)
+* Cisco ASA / FTD non patchés
+* Windows Server Update Service (WSUS)
 
 ---
 
-## 4. Structure du site WorldTour (pages et menus)
+## ❓ Détection d’une intrusion
 
-### 4.1 Pages principales
+### 🔍 Analyse des indicateurs
 
-Le site est organisé en pages “logiques” :
+* Journaux systèmes (SIEM, antivirus, EDR)
+* Dysfonctionnements :
 
-- **Accueil** : présentation générale de l’agence
-- **Antennes** :
-  - Antenne Tarbes
-  - Antenne Toulouse
-  - Antenne Auch  
-  (présentation, responsables, employés, informations)
-- **Les Voyages** : liste de toutes les destinations
-  - Dubaï
-  - Islande
-  - République Dominicaine  
-  (description, photos, tarifs, départs, contact)
-- **Contact** : page utile pour joindre l’agence
+  * services arrêtés
+  * fichiers supprimés ou corrompus
+* Perturbations métiers
+
+> ⚠️ **Important :** un comportement anormal (ralentissement, erreur, disparition de fichiers) peut indiquer une intrusion.
 
 ---
 
-### 4.2 Menu de navigation
+## ❓ Réaction en cas d’intrusion
 
-Le menu est réglé dans :  
-**Apparence > Menus**
+### 🚨 Mesures immédiates
 
-Il contient généralement :
-- Accueil
-- Nos Antennes (menu déroulant)
-- Nos Voyages (menu déroulant)
-- Contact
+* Isolation des machines
+* Coupure réseau
+* Blocage des accès distants
+* Sauvegarde des données
 
-➡️ But TP : que l’utilisateur trouve tout en 2 clics max.
+### 🧠 Gestion de l’incident
 
----
-
-### 4.3 Rôles et accès
-
-Deux rôles simples :
-- **Administrateur** : accès complet (installation, configuration)
-- **Éditeur WorldTour** : modification du contenu (pages, textes, photos)
-
-Création d’un compte éditeur :  
-Tableau de bord > Utilisateurs > Ajouter > Rôle : Éditeur
+* Conservation des preuves (logs)
+* Analyse du périmètre
+* Mobilisation des équipes
 
 ---
 
-## 5. Mettre à jour le contenu (avec les blocs)
+## ⚖️ Aspects légaux
 
-Le site se modifie via des “blocs” (texte, image, galerie, tableau…).  
-➡️ On clique sur un bloc → on modifie → on met à jour la page.
-
-### 5.1 Modifier une page existante
-
-1. Tableau de bord WordPress
-2. **Pages > Toutes les pages**
-3. Cliquer sur la page (ex : “Islande”)
-4. Modifier le texte / photo / tableau
-5. Cliquer sur **Mettre à jour** (ou Publier)
-
-✅ La modification est enregistrée.
+* 📢 Déclaration à l’ANSSI
+* 📝 Dépôt de plainte
+* 🔐 Déclaration CNIL (données personnelles)
 
 ---
 
-### 5.2 Ajouter un nouveau voyage
+## 🔄 Reprise après intrusion
 
-Méthode TP conseillée (simple + propre) :
-1. Pages > Toutes les pages
-2. Ouvrir une page voyage existante (ex : Dubaï)
-3. Dupliquer / recréer sur le même modèle
-4. Remplacer :
-   - titre (nom du pays)
-   - descriptif
-   - galerie photo (minimum 4 photos)
-   - tarifs (tableau)
-   - lieux de départ
-5. Vérifier la mise en page
-6. Publier
-7. Ajouter le voyage dans le menu “Nos Voyages”
-
-💡 Conseil : garder la même structure pour tous les voyages.
+* Gestion de crise
+* Communication interne/externe
+* Contact avec l’assureur
 
 ---
 
-### 5.3 Ajouter une nouvelle antenne
+## 🛠️ Outils de sécurité
 
-1. Pages > Toutes les pages
-2. Dupliquer une antenne existante (ex : Tarbes)
-3. Remplacer :
-   - nom de la ville
-   - adresse / contact
-   - responsables
-   - employés
-   - photos
-4. Publier
-5. Ajouter l’antenne dans “Nos Antennes” (menu)
+* SIEM
+* Antivirus
+* EDR / XDR
+* Prestataires spécialisés (PRIS)
 
 ---
 
-## 6. Points d’attention (erreurs fréquentes)
-
-- ✅ Toujours cliquer sur **Mettre à jour** avant de quitter
-- ❌ Ne pas supprimer une page si on n’est pas sûr
-- ✅ Garder une structure identique entre voyages (plus facile à maintenir)
-- ✅ Tester en local si possible avant de modifier le site en ligne
-- ⚠️ Les mots de passe doivent être notés : pas de réinitialisation admin facile
+# ⚙️ Mission 2 — Configuration Windows
 
 ---
 
-## 7. Support
+## 👤 Création d’un utilisateur
 
-Documentation WordPress : https://fr.wordpress.org/support/  
-Contact projet : f.bravais@gmail.com
+![Création utilisateur](./images/image_1_1.png)
+![Création utilisateur](./images/image_1_2.png)
 
+**Procédure :**
+
+```bash
+Clic droit menu Démarrer
+→ Gestion de l’ordinateur
+→ Utilisateurs et groupes locaux
+→ Nouveau utilisateur
+```
+
+---
+
+## 🖥️ Microsoft Management Console (MMC)
+
+```bash
+Windows + R
+mmc.exe
+```
+
+![MMC](./images/image_2_1.png)
+
+---
+
+## 🔧 Ajout de composants
+
+```bash
+Fichier → Ajouter/Supprimer un composant logiciel enfichable
+```
+
+![Ajout composant](./images/image_3_1.png)
+
+---
+
+## 🧩 Stratégie de groupe
+
+* Ajouter :
+
+  * Éditeur d’objets de stratégie de groupe
+
+![GPO](./images/image_4_1.png)
+
+---
+
+## 🔍 Sélection de l’utilisateur
+
+* Parcourir
+* Onglet **Utilisateurs**
+* Sélection du compte
+
+![Sélection utilisateur](./images/image_5_1.png)
+
+---
+
+## ⚙️ Script de connexion
+
+Créer un fichier `.vbs` :
+
+```vbscript
+MsgBox "Coucou, bienvenue sur mon domaine informatique !", vbInformation, "Bienvenue"
+```
+
+![Script](./images/image_6_1.png)
+
+---
+
+# 🔒 Sécurisation du système
+
+---
+
+## 🚫 Restreindre le panneau de configuration
+
+![Blocage panneau](./images/image_7_1.png)
+
+---
+
+## 🖼️ Bloquer le fond d’écran
+
+![Blocage fond](./images/image_8_1.png)
+
+---
+
+## 🔄 Configuration des mises à jour
+
+### Via interface Windows
+
+![Windows Update](./images/image_9_1.png)
+
+### Via PowerShell
+
+```powershell
+Get-WindowsUpdateLog
+```
+
+```powershell
+Get-ChildItem "C:\Windows\Logs\WindowsUpdate" | Sort-Object LastWriteTime -Descending
+```
+
+---
+
+# 🧠 Étude du BOOT
+
+Analyse du gestionnaire de démarrage sur différents systèmes d’exploitation.
+
+---
+
+## 📁 Structure du projet
+
+```bash
+project/
+│── README.md
+│── images/
+│   ├── image_1_1.png
+│   ├── image_2_1.png
+│   ├── image_3_1.png
+│   ├── ...
+```
+
+---
+
+## ✅ Conclusion
+
+Ce projet met en évidence :
+
+* l’importance de la **détection rapide des incidents**
+* la mise en place de **stratégies de sécurité locales**
+* le rôle clé de la **surveillance et des mises à jour**
+
+---
+
+## 👨‍💻 Auteur
+
+Projet réalisé dans un cadre pédagogique.
