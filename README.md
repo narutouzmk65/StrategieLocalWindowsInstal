@@ -1,175 +1,109 @@
 # 🛡️ Gestion des incidents & stratégie locale
 
-![Status](https://img.shields.io/badge/status-complete-success)
-![Type](https://img.shields.io/badge/type-school%20project-blue)
-![Security](https://img.shields.io/badge/focus-cybersecurity-red)
+---
+
+## 📌 Mission 1 — Analyse CERT-FR
+
+### ❓ Cibles des alertes récentes
+
+* BIG-IP APM (F5)
+* Messagerie instantanée
+* Ivanti EPMM
+* React Server Components
+* Cisco SD-WAN
 
 ---
 
-## 📚 Sommaire
+### ❓ Systèmes obsolètes
 
-* [📌 Mission 1 — Analyse CERT-FR](#-mission-1--analyse-cert-fr)
-* [⚙️ Mission 2 — Configuration Windows](#️-mission-2--configuration-windows)
-* [🔒 Sécurisation du système](#-sécurisation-du-système)
-* [🧠 Étude du BOOT](#-étude-du-boot)
-
----
-
-# 📌 Mission 1 — Analyse CERT-FR
-
-🔗 Source : https://www.cert.ssi.gouv.fr/
+* SharePoint 2016 / 2019
+* SonicWall
+* Cisco ASA / FTD
+* WSUS
 
 ---
 
-## ❓ Cibles des alertes récentes
+### ❓ Détection d’une intrusion
 
-| Alerte              | Cible                   | Description                                         |
-| ------------------- | ----------------------- | --------------------------------------------------- |
-| CERTFR-2026-ALE-004 | BIG-IP APM (F5)         | Exécution de code à distance (exploitée activement) |
-| CERTFR-2026-ALE-003 | Messagerie instantanée  | Campagnes ciblant secteurs sensibles                |
-| CERTFR-2026-ALE-001 | Ivanti EPMM             | Scripts de détection fournis                        |
-| CERTFR-2025-ALE-014 | React Server Components | Vulnérabilité critique                              |
-| CERTFR-2026-ALE-002 | Cisco SD-WAN            | Infrastructure réseau vulnérable                    |
+* Logs (SIEM, antivirus, EDR)
+* Fichiers disparus
+* Services arrêtés
+* Ralentissements système
 
 ---
 
-## ❓ Logiciels et systèmes obsolètes
+### ❓ Réaction à une intrusion
 
-* SharePoint Enterprise Server 2016
-* SharePoint Server 2019
-* SonicWall (versions anciennes)
-* Cisco ASA / FTD non patchés
-* Windows Server Update Service (WSUS)
-
----
-
-## ❓ Détection d’une intrusion
-
-### 🔍 Analyse des indicateurs
-
-* Journaux systèmes (SIEM, antivirus, EDR)
-* Dysfonctionnements :
-
-  * services arrêtés
-  * fichiers supprimés ou corrompus
-* Perturbations métiers
-
-> ⚠️ **Important :** un comportement anormal (ralentissement, erreur, disparition de fichiers) peut indiquer une intrusion.
-
----
-
-## ❓ Réaction en cas d’intrusion
-
-### 🚨 Mesures immédiates
-
-* Isolation des machines
-* Coupure réseau
-* Blocage des accès distants
-* Sauvegarde des données
-
-### 🧠 Gestion de l’incident
-
-* Conservation des preuves (logs)
-* Analyse du périmètre
-* Mobilisation des équipes
-
----
-
-## ⚖️ Aspects légaux
-
-* 📢 Déclaration à l’ANSSI
-* 📝 Dépôt de plainte
-* 🔐 Déclaration CNIL (données personnelles)
-
----
-
-## 🔄 Reprise après intrusion
-
-* Gestion de crise
-* Communication interne/externe
-* Contact avec l’assureur
-
----
-
-## 🛠️ Outils de sécurité
-
-* SIEM
-* Antivirus
-* EDR / XDR
-* Prestataires spécialisés (PRIS)
-
----
-
-# ⚙️ Mission 2 — Configuration Windows
-
----
-
-## 👤 Création d’un utilisateur
-
-![Création utilisateur](./images/image_1_1.png)
-![Création utilisateur](./images/image_1_2.png)
-
-**Procédure :**
-
-```bash
-Clic droit menu Démarrer
-→ Gestion de l’ordinateur
-→ Utilisateurs et groupes locaux
-→ Nouveau utilisateur
+```bash id="rj5c5v"
+Isoler la machine
+Couper le réseau
+Sauvegarder les logs
 ```
+
+---
+
+## ⚙️ Mission 2 — Configuration Windows
+
+---
+
+## 👤 Création utilisateur
+
+<p align="center">
+  <img src="./images/image_1_1.png" width="600">
+</p>
+
+<p align="center">
+  <img src="./images/image_1_2.png" width="600">
+</p>
 
 ---
 
 ## 🖥️ Microsoft Management Console (MMC)
 
-```bash
+```bash id="e1p75w"
 Windows + R
 mmc.exe
 ```
 
-![MMC](./images/image_2_1.png)
+<p align="center">
+  <img src="./images/image_2_1.png" width="600">
+</p>
 
 ---
 
-## 🔧 Ajout de composants
+## 🔧 Ajout de composant
 
-```bash
-Fichier → Ajouter/Supprimer un composant logiciel enfichable
-```
-
-![Ajout composant](./images/image_3_1.png)
+<p align="center">
+  <img src="./images/image_3_1.png" width="600">
+</p>
 
 ---
 
 ## 🧩 Stratégie de groupe
 
-* Ajouter :
-
-  * Éditeur d’objets de stratégie de groupe
-
-![GPO](./images/image_4_1.png)
+<p align="center">
+  <img src="./images/image_4_1.png" width="600">
+</p>
 
 ---
 
-## 🔍 Sélection de l’utilisateur
+## 🔍 Sélection utilisateur
 
-* Parcourir
-* Onglet **Utilisateurs**
-* Sélection du compte
-
-![Sélection utilisateur](./images/image_5_1.png)
+<p align="center">
+  <img src="./images/image_5_1.png" width="600">
+</p>
 
 ---
 
 ## ⚙️ Script de connexion
 
-Créer un fichier `.vbs` :
-
-```vbscript
+```vbscript id="6lr24o"
 MsgBox "Coucou, bienvenue sur mon domaine informatique !", vbInformation, "Bienvenue"
 ```
 
-![Script](./images/image_6_1.png)
+<p align="center">
+  <img src="./images/image_6_1.png" width="600">
+</p>
 
 ---
 
@@ -177,66 +111,78 @@ MsgBox "Coucou, bienvenue sur mon domaine informatique !", vbInformation, "Bienv
 
 ---
 
-## 🚫 Restreindre le panneau de configuration
+## 🚫 Blocage du panneau de configuration
 
-![Blocage panneau](./images/image_7_1.png)
-
----
-
-## 🖼️ Bloquer le fond d’écran
-
-![Blocage fond](./images/image_8_1.png)
+<p align="center">
+  <img src="./images/image_7_1.png" width="600">
+</p>
 
 ---
 
-## 🔄 Configuration des mises à jour
+## 🖼️ Blocage du fond d’écran
 
-### Via interface Windows
+<p align="center">
+  <img src="./images/image_8_1.png" width="600">
+</p>
 
-![Windows Update](./images/image_9_1.png)
+---
 
-### Via PowerShell
+## 🔄 Windows Update
 
-```powershell
+<p align="center">
+  <img src="./images/image_9_1.png" width="600">
+</p>
+
+```powershell id="y59p0r"
 Get-WindowsUpdateLog
 ```
 
-```powershell
+```powershell id="7s9w3h"
 Get-ChildItem "C:\Windows\Logs\WindowsUpdate" | Sort-Object LastWriteTime -Descending
 ```
 
 ---
 
-# 🧠 Étude du BOOT
+## 🧠 Étude du BOOT
 
-Analyse du gestionnaire de démarrage sur différents systèmes d’exploitation.
+* Analyse du gestionnaire de démarrage multi-OS
 
 ---
 
 ## 📁 Structure du projet
 
-```bash
-project/
+```bash id="cx6hyz"
+StrategieLocalWindowsInstal/
 │── README.md
 │── images/
 │   ├── image_1_1.png
+│   ├── image_1_2.png
 │   ├── image_2_1.png
 │   ├── image_3_1.png
-│   ├── ...
+│   ├── image_4_1.png
+│   ├── image_5_1.png
+│   ├── image_6_1.png
+│   ├── image_7_1.png
+│   ├── image_8_1.png
+│   ├── image_9_1.png
 ```
 
 ---
 
 ## ✅ Conclusion
 
-Ce projet met en évidence :
-
-* l’importance de la **détection rapide des incidents**
-* la mise en place de **stratégies de sécurité locales**
-* le rôle clé de la **surveillance et des mises à jour**
+* Détection rapide des incidents
+* Mise en place de stratégies locales
+* Importance des mises à jour et de la supervision
 
 ---
 
-## 👨‍💻 Auteur
+## 🚀 Déploiement
 
-Projet réalisé dans un cadre pédagogique.
+```bash id="hgtp1x"
+git add .
+git commit -m "final README with images"
+git push
+```
+
+---
