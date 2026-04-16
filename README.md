@@ -1,188 +1,277 @@
-# 🛡️ Gestion des incidents & stratégie locale
+# 🛡️ Gestion des Incidents de Sécurité & Politique de Configuration
+
+> **Compte Rendu** — BTS SIO | Cybersécurité & Administration Windows
+> Référence : CERT-FR · ANSSI · CNIL
 
 ---
 
-## 📌 Mission 1 — Analyse CERT-FR
+## 📋 Table des matières
 
-### ❓ Cibles des alertes récentes
-
-* BIG-IP APM (F5)
-* Messagerie instantanée
-* Ivanti EPMM
-* React Server Components
-* Cisco SD-WAN
+* Mission 1 — Analyse CERT-FR
+* Mission 2 — Politique de configuration locale
 
 ---
 
-### ❓ Systèmes obsolètes
-
-* SharePoint 2016 / 2019
-* SonicWall
-* Cisco ASA / FTD
-* WSUS
+# 🔍 Mission 1 — Analyse CERT-FR
 
 ---
 
-### ❓ Détection d’une intrusion
+## 🎯 Question 1 — Cibles des cinq alertes les plus récentes
 
-* Logs (SIEM, antivirus, EDR)
-* Fichiers disparus
-* Services arrêtés
-* Ralentissements système
+| # | Référence           | Cible                       | Risque                                             |
+| - | ------------------- | --------------------------- | -------------------------------------------------- |
+| 1 | CERTFR-2026-ALE-004 | **BIG-IP APM — F5**         | Exécution de code à distance sans authentification |
+| 2 | CERTFR-2026-ALE-003 | **Messagerie instantanée**  | Campagnes ciblées (secteurs sensibles)             |
+| 3 | CERTFR-2026-ALE-001 | **Ivanti EPMM**             | Scripts IoC disponibles                            |
+| 4 | CERTFR-2025-ALE-014 | **React Server Components** | Vulnérabilité critique                             |
+| 5 | CERTFR-2026-ALE-002 | **Cisco SD-WAN**            | Compromission réseau                               |
 
 ---
 
-### ❓ Réaction à une intrusion
+## 🗂️ Question 2 — Logiciels ou systèmes obsolètes
 
-```bash id="rj5c5v"
-Isoler la machine
-Couper le réseau
-Sauvegarder les logs
+| # | Système            | Détail                |
+| - | ------------------ | --------------------- |
+| 1 | SharePoint 2016    | Faille path traversal |
+| 2 | SharePoint 2019    | Toujours vulnérable   |
+| 3 | SonicWall (ancien) | Exploitation active   |
+| 4 | Cisco ASA / FTD    | DoS à distance        |
+| 5 | WSUS               | Exécution de code     |
+
+---
+
+## 🔎 Question 3 — Détecter une intrusion
+
+```
+OBSERVER → ANALYSER → DÉLIMITER
+```
+
+### 🔍 Observer
+
+* Logs / SIEM → anomalies
+* Antivirus / EDR → alertes
+* Dysfonctionnements système
+* Impact métier
+
+### 📌 Délimiter
+
+* Nombre de machines touchées
+* Propagation éventuelle
+* Origine probable
+
+---
+
+## 🚨 Question 4 — Réagir à une intrusion
+
+### 🧱 1. Endiguer
+
+```
+Isoler réseau → Bloquer accès → Éteindre machines
+```
+
+### 💾 2. Préserver les preuves
+
+* Sauvegarder logs hors ligne
+* Étendre la rétention
+* Conserver traces système
+
+### 👥 3. Organiser
+
+* Informer équipes
+* Identifier responsables
+* Coordonner actions
+
+---
+
+## ⚖️ Question 5 — Obligations légales
+
+### 📌 3 actions principales
+
+1. **ANSSI**
+
+   * OSE / OIV
+   * Données sensibles
+
+2. **Plainte**
+
+   * Trace légale
+   * Enquête
+   * Responsabilité
+
+3. **CNIL**
+
+   * Données personnelles
+   * ⏱️ 72h max
+
+---
+
+## 🔄 Question 6 — Reprise après incident
+
+### 🧠 Gestion de crise
+
+* Décisions rapides
+* Communication maîtrisée
+* Éviter blocages
+
+### 🛡️ Assurance
+
+* Contacter rapidement
+* Activer couverture
+* Identifier prestataires
+
+---
+
+## 🛠️ Question 7 — Outils de sécurité
+
+| Type             | Solution          |
+| ---------------- | ----------------- |
+| Grande structure | Prestataire PRIS  |
+| PME              | Cybermalveillance |
+| Tous             | SIEM / EDR / XDR  |
+
+---
+
+# ⚙️ Mission 2 — Politique de configuration locale
+
+---
+
+## 👤 Partie 1 — Créer un utilisateur
+
+```
+Démarrer → Gestion de l’ordinateur
+→ Utilisateurs et groupes locaux
+→ Utilisateurs → Nouveau
+```
+
+⚠️ Désactiver :
+
+> "L'utilisateur doit changer le mot de passe"
+
+---
+
+## 💻 Partie 2 — Ouvrir MMC
+
+```
+Windows + R → mmc.exe
 ```
 
 ---
 
-## ⚙️ Mission 2 — Configuration Windows
+## 🔌 Partie 3 — Ajouter un composant
 
----
-
-## 👤 Création utilisateur
-
-<p align="center">
-  <img src="./images/image_1_1.png" width="600">
-</p>
-
-<p align="center">
-  <img src="./images/image_1_2.png" width="600">
-</p>
-
----
-
-## 🖥️ Microsoft Management Console (MMC)
-
-```bash id="e1p75w"
-Windows + R
-mmc.exe
+```
+Fichier → Ajouter/Supprimer un composant
 ```
 
-<p align="center">
-  <img src="./images/image_2_1.png" width="600">
-</p>
+---
+
+## 📋 Partie 4 — Stratégie de groupe
+
+* Ajouter : **Éditeur d’objets de stratégie**
+* Cliquer sur **Ajouter**
 
 ---
 
-## 🔧 Ajout de composant
+## 📂 Partie 5 — Sélection utilisateur
 
-<p align="center">
-  <img src="./images/image_3_1.png" width="600">
-</p>
-
----
-
-## 🧩 Stratégie de groupe
-
-<p align="center">
-  <img src="./images/image_4_1.png" width="600">
-</p>
-
----
-
-## 🔍 Sélection utilisateur
-
-<p align="center">
-  <img src="./images/image_5_1.png" width="600">
-</p>
-
----
-
-## ⚙️ Script de connexion
-
-```vbscript id="6lr24o"
-MsgBox "Coucou, bienvenue sur mon domaine informatique !", vbInformation, "Bienvenue"
+```
+Parcourir → Onglet Utilisateurs → Choisir utilisateur
 ```
 
-<p align="center">
-  <img src="./images/image_6_1.png" width="600">
-</p>
+---
+
+## 📝 Partie 6 — Configuration
+
+### 🖼️ Fond d’écran
+
+```
+Configuration utilisateur
+→ Modèles admin
+→ Bureau → Papier peint
+```
+
+Exemples :
+
+```
+C:\Windows\Web\Wallpaper
+\\Serveur\Partage\image.jpg
+```
 
 ---
 
-# 🔒 Sécurisation du système
+### 📜 Script de connexion
+
+```vbscript
+MsgBox "Bienvenue sur le domaine !", vbInformation, "Connexion"
+```
+
+Associer :
+
+```
+Scripts ouverture session → Ajouter
+```
 
 ---
 
-## 🚫 Blocage du panneau de configuration
+## 🚫 Restriction panneau de config
 
-<p align="center">
-  <img src="./images/image_7_1.png" width="600">
-</p>
+```
+Configuration utilisateur
+→ Modèles admin
+→ Panneau de config → Interdire accès
+```
 
 ---
 
-## 🖼️ Blocage du fond d’écran
+## 🖼️ Bloquer fond d’écran
 
-<p align="center">
-  <img src="./images/image_8_1.png" width="600">
-</p>
+```
+Configuration utilisateur
+→ Personnalisation
+→ Empêcher modification
+```
 
 ---
 
 ## 🔄 Windows Update
 
-<p align="center">
-  <img src="./images/image_9_1.png" width="600">
-</p>
+### Interface :
 
-```powershell id="y59p0r"
+```
+Paramètres → Windows Update
+```
+
+### PowerShell :
+
+```powershell
 Get-WindowsUpdateLog
 ```
 
-```powershell id="7s9w3h"
-Get-ChildItem "C:\Windows\Logs\WindowsUpdate" | Sort-Object LastWriteTime -Descending
-```
+---
+
+## 🖥️ BOOT (msconfig)
+
+| Onglet    | Rôle                 |
+| --------- | -------------------- |
+| Général   | Mode démarrage       |
+| Boot      | OS / Mode sans échec |
+| Services  | Gestion services     |
+| Démarrage | Apps lancement       |
+| Outils    | Accès outils système |
 
 ---
 
-## 🧠 Étude du BOOT
+## 📎 Ressources
 
-* Analyse du gestionnaire de démarrage multi-OS
-
----
-
-## 📁 Structure du projet
-
-```bash id="cx6hyz"
-StrategieLocalWindowsInstal/
-│── README.md
-│── images/
-│   ├── image_1_1.png
-│   ├── image_1_2.png
-│   ├── image_2_1.png
-│   ├── image_3_1.png
-│   ├── image_4_1.png
-│   ├── image_5_1.png
-│   ├── image_6_1.png
-│   ├── image_7_1.png
-│   ├── image_8_1.png
-│   ├── image_9_1.png
-```
+* CERT-FR
+* ANSSI
+* CNIL
+* Cybermalveillance
 
 ---
 
-## ✅ Conclusion
+<div align="center">
 
-* Détection rapide des incidents
-* Mise en place de stratégies locales
-* Importance des mises à jour et de la supervision
+**Compte rendu BTS SIO — Gestion des Incidents**
 
----
-
-## 🚀 Déploiement
-
-```bash id="hgtp1x"
-git add .
-git commit -m "final README with images"
-git push
-```
-
----
+</div>
